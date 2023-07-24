@@ -14,4 +14,8 @@ export class ShoppingListComponent {
     new ShoppingListModel('Milk', 20)
   ];
 
+  addingInginShoppingList(shoppingListIngAdd: ShoppingListModel) {
+    this.shoppingList.push(shoppingListIngAdd);
+  }
+
 }
