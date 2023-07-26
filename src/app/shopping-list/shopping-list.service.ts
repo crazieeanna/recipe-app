@@ -1,10 +1,12 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { ShoppingListModel } from "./shopping-list.model";
 
+
 @Injectable({providedIn: 'root'})
 export class ShoppingListService {
 
     shoppingListIngredient =  new EventEmitter<ShoppingListModel[]>();
+    loadShopListItemID = new EventEmitter<number>();
 
     private shoppingList: ShoppingListModel[] = [
         new ShoppingListModel('Potato', 10),
@@ -23,6 +25,20 @@ export class ShoppingListService {
 
     getShoppingIng(ing: ShoppingListModel[]) {
         this.shoppingList.push(...ing);
+        this.shoppingListIngredient.emit(this.shoppingList.slice());
+    }
+
+    getShoppingListByID(index: number) {
+        return this.shoppingList[index];
+    }
+
+    updatingInginShoppingList(index: number, ing: ShoppingListModel) {
+        this.shoppingList[index] = ing;
+        this.shoppingListIngredient.emit(this.shoppingList.slice());
+    }
+
+    deletingInginShoppingList(index: number) {
+        this.shoppingList.splice(index, 1);
         this.shoppingListIngredient.emit(this.shoppingList.slice());
     }
 } 
