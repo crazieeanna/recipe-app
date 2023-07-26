@@ -12,9 +12,6 @@ export class RecipeListItemComponent {
   constructor(private recipeService: RecipeService) {}
 
   @Input() recipe!: RecipeModel;
-  
-  onRecipeClick() {
-    this.recipeService.recipeDetailOutOnItemClick.emit(this.recipe);
-  }
+  @Input() recipeItemID!: number;
 
 }

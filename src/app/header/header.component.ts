@@ -7,10 +7,4 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderComponent {
 
-  @Output() optionsClicked = new EventEmitter<string>();
-
-  onClickOption(option: string) {
-    this.optionsClicked.emit(option);
-  }
-
 }

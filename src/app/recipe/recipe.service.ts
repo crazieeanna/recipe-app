@@ -24,4 +24,8 @@ export class RecipeService {
         this.shoppingListService.getShoppingIng(ing);
     }
 
+    getRecipeListByID(index: number) {
+        return this.recipeList.slice()[index];
+    }
+
 }

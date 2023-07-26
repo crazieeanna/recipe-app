@@ -7,9 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'recipes';
-  optionSelected = 'recipes'; 
-
-  onOptionSelected(option: string) {
-    this.optionSelected = option;
-  }
 }
