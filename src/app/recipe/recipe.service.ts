@@ -44,4 +44,9 @@ export class RecipeService {
         this.recipeEditEvent.emit(this.recipeList.slice());
     }
 
+    getRecipeForBackEnd(recipe: RecipeModel[]) {
+        this.recipeList = recipe;
+        this.recipeEditEvent.emit(this.recipeList.slice());
+    }
+
 }

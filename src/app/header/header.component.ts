@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { DatabaseService } from '../shared/database.service';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +7,15 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+
+  constructor(private dataBaseService: DatabaseService) {}
+
+  onSaveData() {
+    this.dataBaseService.saveData();
+  }
+
+  onFetchData() {
+    this.dataBaseService.fetchData();
+  }
 
 }
