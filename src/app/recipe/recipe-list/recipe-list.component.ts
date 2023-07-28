@@ -16,10 +16,15 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit() {
     this.recipeList = this.recipeService.getRecipeList();
+    this.recipeService.recipeEditEvent.subscribe(
+      (recipe: RecipeModel[]) => {
+        this.recipeList = recipe;
+      }
+    );
   }
 
   clickToNewRecipe() {
-    this.router.navigate(['new' ], {relativeTo: this.route});
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
 
 }

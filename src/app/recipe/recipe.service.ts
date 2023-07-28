@@ -9,6 +9,7 @@ export class RecipeService {
     constructor(private shoppingListService: ShoppingListService) {}
 
     recipeDetailOutOnItemClick = new EventEmitter<RecipeModel>();
+    recipeEditEvent = new EventEmitter<RecipeModel[]>();
 
     private recipeList: RecipeModel[] = [
         new RecipeModel('Dosa', 'Mysore Masala Buteer Dosa', 'https://i.pinimg.com/564x/1c/53/e3/1c53e3c86903a834c1902ab4e6ad5dd4--mysore-coconut-chutney.jpg', [new ShoppingListModel('Potato', 15)]),
@@ -26,6 +27,21 @@ export class RecipeService {
 
     getRecipeListByID(index: number) {
         return this.recipeList.slice()[index];
+    }
+
+    updateRecipeItem(index: number, newRecipe: RecipeModel) {
+        this.recipeList[index] = newRecipe;
+        this.recipeEditEvent.emit(this.recipeList.slice());
+    }
+
+    addNewRecipeToList(recipe: RecipeModel) {
+        this.recipeList.push(recipe);
+        this.recipeEditEvent.emit(this.recipeList.slice());
+    }
+
+    onDeleteRecipe(index: number) {
+        this.recipeList.splice(index, 1);
+        this.recipeEditEvent.emit(this.recipeList.slice());
     }
 
 }
