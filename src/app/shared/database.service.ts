@@ -12,13 +12,13 @@ export class DatabaseService {
 
   saveData() {
     const recipeData = this.recipeService.getRecipeList();
-    this.http.put('https://recipe-book-database-d7fbe-default-rtdb.asia-southeast1.firebasedatabase.app/recipes.json', recipeData).subscribe((saveResponse) => {
+    this.http.put('https://annu-ang-pro-default-rtdb.firebaseio.com/recipes.json', recipeData).subscribe((saveResponse) => {
       console.log(saveResponse);
     });
   }
 
   fetchData() {
-    this.http.get<RecipeModel[]>('https://recipe-book-database-d7fbe-default-rtdb.asia-southeast1.firebasedatabase.app/recipes.json').subscribe((fetchResponse) => {
+    this.http.get<RecipeModel[]>('https://annu-ang-pro-default-rtdb.firebaseio.com/recipes.json').subscribe((fetchResponse) => {
       this.recipeService.getRecipeForBackEnd(fetchResponse);
     })
   }
