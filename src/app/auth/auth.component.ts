@@ -47,6 +47,7 @@ export class AuthComponent {
     } else {
       this.authService.signUp(email, password).subscribe(responseSignUp => {
         console.log(responseSignUp);
+        this.router.navigate(['/recipes']);
       }, errorSignUp => {
         console.log(errorSignUp);
         switch(errorSignUp.error.error.message) {
