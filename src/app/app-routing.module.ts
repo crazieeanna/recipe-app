@@ -8,7 +8,7 @@ import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component'
 import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
-  {path: '', redirectTo:'/recipes', pathMatch: 'full'},
+  {path: '', redirectTo:'/auth', pathMatch: 'full'},
   {path: 'recipes', component: RecipeComponent, children: [
     {path: '', component: RecipeStartComponent},
     {path: 'new', component: RecipeEditComponent},

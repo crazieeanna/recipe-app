@@ -21,6 +21,10 @@ export class HeaderComponent implements OnInit {
     this.dataBaseService.fetchData();
   }
 
+  onLogOut() {
+    this.authService.logOut();
+  }
+
   ngOnInit() {
     this.authService.user.subscribe(auth => {
       this.isAuth = !auth ? false : true;

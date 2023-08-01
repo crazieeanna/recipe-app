@@ -31,6 +31,7 @@ export class AuthComponent {
     if(this.isLoggedIn === true) {
       this.authService.logIn(email, password).subscribe(responseLogIn => {
         console.log(responseLogIn);
+        this.router.navigate(['/recipes']);
       }, errorLogIn => {
         console.log(errorLogIn);
         switch(errorLogIn.error.error.message) {
@@ -54,11 +55,7 @@ export class AuthComponent {
         }
       });
     }
-    
-    this.router.navigate(['/recipes']);
     form.reset();
-
-
   }
 
 }

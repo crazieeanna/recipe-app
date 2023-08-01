@@ -3,6 +3,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { UserData } from './user-data.model';
 import { tap } from 'rxjs/operators';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 interface AuthData {
   kind: string,
@@ -19,9 +20,9 @@ interface AuthData {
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
-  user = new Subject<UserData>();
+  user = new BehaviorSubject<UserData>(null);
 
   signUp(email: string, password: string) {
     return this.http.post<AuthData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB2lVFl5DQFep_9Y3rJ3YXUNjsBEKvBmtI', {
@@ -45,5 +46,10 @@ export class AuthService {
       const userLogInData = new UserData(userLogInDataInfo.email, userLogInDataInfo.localId, userLogInDataInfo.idToken, expirationDateLogIn);
       this.user.next(userLogInData);
     }))
+  }
+
+  logOut() {
+    this.user.next(null);
+    this.router.navigate(['/auth']);
   }
 }
