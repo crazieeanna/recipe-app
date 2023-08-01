@@ -4,6 +4,7 @@ import { UserData } from './user-data.model';
 import { tap } from 'rxjs/operators';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { Environment } from '../environments/ennvironment';
 
 interface AuthData {
   kind: string,
@@ -25,7 +26,7 @@ export class AuthService {
   user = new BehaviorSubject<UserData>(null);
 
   signUp(email: string, password: string) {
-    return this.http.post<AuthData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB2lVFl5DQFep_9Y3rJ3YXUNjsBEKvBmtI', {
+    return this.http.post<AuthData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + Environment.key, {
       email: email,
       password: password,
       returnSecureToken: true
@@ -37,7 +38,7 @@ export class AuthService {
   }
 
   logIn(email: string, password: string) {
-    return this.http.post<AuthData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB2lVFl5DQFep_9Y3rJ3YXUNjsBEKvBmtI', {
+    return this.http.post<AuthData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + Environment.key, {
       email: email,
       password: password,
       returnSecureToken: true
